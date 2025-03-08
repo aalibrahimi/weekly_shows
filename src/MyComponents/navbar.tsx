@@ -75,12 +75,11 @@ export function Navbar(): React.ReactElement {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-gray-200 dark:border-gray-800 bg-white text-black dark:bg-[#000000] dark:text-white">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        {/* Left section: Logo and Mode Toggle */}
+        {/* Left section: Logo only */}
         <div className="flex items-center gap-4">
           <Link href="/" className="flex items-center space-x-2">
             <span className="font-bold">YourLogo</span>
           </Link>
-          <ModeToggle />
         </div>
         
         {/* Middle section: Navigation menu (centered) */}
@@ -125,8 +124,9 @@ export function Navbar(): React.ReactElement {
           </NavigationMenu>
         </div>
         
-        {/* Right section: Avatar with dropdown */}
-        <div className="flex items-center justify-end">
+        {/* Right section: Mode toggle and Avatar with dropdown */}
+        <div className="flex items-center justify-end gap-4 pr-4">
+          <ModeToggle />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Avatar className="cursor-pointer">
