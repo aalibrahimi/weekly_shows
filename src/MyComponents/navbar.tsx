@@ -7,7 +7,7 @@ import { ModeToggle } from "@/components/ui/modetoggle";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react"; // Import icons for menu toggle
+import { Menu, X, Globe } from "lucide-react"; // Import icons for menu toggle and language
 
 interface RouteItem {
   title: string;
@@ -74,11 +74,32 @@ const routes: RouteItem[] = [
   },
 ];
 
+interface Language {
+  code: string;
+  name: string;
+  flag?: string;
+}
+
+const languages: Language[] = [
+  { code: "en", name: "English", flag: "🇺🇸" },
+  { code: "es", name: "Español", flag: "🇪🇸" },
+  { code: "fr", name: "Français", flag: "🇫🇷" },
+  { code: "de", name: "Deutsch", flag: "🇩🇪" },
+  { code: "ja", name: "日本語", flag: "🇯🇵" },
+];
+
 export function Navbar(): React.ReactElement {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState<Language>(languages[0]);
   
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(prev => !prev);
+  };
+  
+  const changeLanguage = (language: Language) => {
+    setCurrentLanguage(language);
+    // Here you would typically call your i18n library's function to change the locale
+    // For example: i18n.changeLanguage(language.code);
   };
 
   return (
@@ -146,9 +167,38 @@ export function Navbar(): React.ReactElement {
           </NavigationMenu>
         </div>
         
-        {/* Right section: Mode toggle and Avatar with dropdown */}
+        {/* Right section: Language switcher, Mode toggle and Avatar with dropdown */}
         <div className="flex items-center justify-end gap-4 pr-4">
+          {/* Language Switcher */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className="flex items-center gap-1 px-2 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                <Globe className="h-4 w-4" />
+                <span className="hidden sm:inline-block">{currentLanguage.flag}</span>
+                <span className="sr-only">Switch language</span>
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="bg-white dark:bg-gray-950 text-black dark:text-white">
+              <DropdownMenuLabel>Select Language</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              {languages.map((language) => (
+                <DropdownMenuItem 
+                  key={language.code}
+                  className={cn(
+                    "cursor-pointer flex items-center gap-2",
+                    currentLanguage.code === language.code && "font-medium bg-gray-100 dark:bg-gray-800"
+                  )}
+                  onClick={() => changeLanguage(language)}
+                >
+                  <span className="text-base">{language.flag}</span>
+                  {language.name}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+          
           <ModeToggle />
+          
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Avatar className="cursor-pointer">
@@ -180,6 +230,29 @@ export function Navbar(): React.ReactElement {
         } overflow-hidden`}
       >
         <nav className="px-4 py-4 space-y-1">
+          {/* Language Selector - Mobile View */}
+          <div className="py-2">
+            <p className="px-3 text-sm font-medium text-gray-500 dark:text-gray-400">Language</p>
+            <div className="mt-1 grid grid-cols-2 gap-1">
+              {languages.map((language) => (
+                <button
+                  key={language.code}
+                  className={cn(
+                    "flex items-center gap-2 py-2 px-3 text-sm rounded-md transition-colors",
+                    currentLanguage.code === language.code 
+                      ? "bg-gray-100 dark:bg-gray-800 font-medium" 
+                      : "hover:bg-gray-50 dark:hover:bg-gray-900"
+                  )}
+                  onClick={() => {
+                    changeLanguage(language);
+                  }}
+                >
+                  <span>{language.flag}</span> {language.name}
+                </button>
+              ))}
+            </div>
+            <div className="my-2 border-t border-gray-200 dark:border-gray-800"></div>
+          </div>
           {routes.map((route, index) => {
             if (route.content) {
               return (
