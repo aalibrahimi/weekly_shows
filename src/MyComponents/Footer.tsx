@@ -78,14 +78,9 @@ export function Footer(): React.ReactElement {
             </p>
             <div className="flex items-center space-x-4">
               <Link href="#" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white">
-                Twitter
-              </Link>
-              <Link href="#" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white">
                 GitHub
               </Link>
-              <Link href="#" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white">
-                LinkedIn
-              </Link>
+             
             </div>
           </div>
         </div>
