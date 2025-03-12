@@ -77,7 +77,7 @@ export function Footer(): React.ReactElement {
               © {new Date().getFullYear()} Your Company. All rights reserved.
             </p>
             <div className="flex items-center space-x-4">
-              <Link href="#" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white">
+              <Link href="https://github.com/CodeWithAli-Co" target="_blank" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white">
                 GitHub
               </Link>
              
