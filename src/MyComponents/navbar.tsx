@@ -1,13 +1,15 @@
 // src/components/Navbar.tsx
 "use client"
-import React, { useState } from "react";
-import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import {Link, usePathname} from '@/i18n/navigation';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { ModeToggle } from "@/components/ui/modetoggle";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { Menu, X, Globe } from "lucide-react"; // Import icons for menu toggle and language
+import { useLocale, useTranslations } from "next-intl";
+import Image from "next/image";
 
 interface RouteItem {
   title: string;
@@ -19,76 +21,80 @@ interface RouteItem {
   }[];
 }
 
-const routes: RouteItem[] = [
-  {
-    title: "Home",
-    href: "/",
-  },
-  {
-    title: "About",
-    href: "/about",
-  },
-  {
-    title: "Features",
-    content: [
-      {
-        title: "Feature 1",
-        href: "/features/1",
-        description: "Description for feature 1",
-      },
-      {
-        title: "Feature 2",
-        href: "/features/2",
-        description: "Description for feature 2",
-      },
-      {
-        title: "Feature 3",
-        href: "/features/3",
-        description: "Description for feature 3",
-      },
-    ],
-  },
-  {
-    title: "Resources",
-    content: [
-      {
-        title: "Documentation",
-        href: "/docs",
-        description: "Technical documentation and guides",
-      },
-      {
-        title: "Blog",
-        href: "/blog",
-        description: "Latest news and articles",
-      },
-      {
-        title: "Help Center",
-        href: "/help",
-        description: "Support resources and FAQs",
-      },
-    ],
-  },
-  {
-    title: "Contact",
-    href: "/contact",
-  },
-];
-
-interface Language {
-  code: string;
-  name: string;
-  flag?: string;
-}
-
-const languages: Language[] = [
-  { code: "en", name: "English", flag: "🇺🇸" },
-  { code: "es", name: "Español", flag: "🇪🇸" },
-  { code: "fr", name: "Français", flag: "🇫🇷" },
-  { code: "de", name: "Deutsch", flag: "🇩🇪" },
-  { code: "ja", name: "日本語", flag: "🇯🇵" },
-];
-
 export function Navbar(): React.ReactElement {
+  const defaultRoute = { href: "/" }
+  const t = useTranslations('NavBar');
+
+  const routes: RouteItem[] = [
+    {
+      title: t('routes.home'),
+      href: "/",
+    },
+    {
+      title: t('routes.about'),
+      href: "/about",
+    },
+    {
+      title: t('routes.features.title'),
+      content: [
+        {
+          title: t('routes.features.content.1.title'),
+          href: "/features/1",
+          description: t('routes.features.content.1.desc'),
+        },
+        {
+          title: t('routes.features.content.2.title'),
+          href: "/features/2",
+          description: t('routes.features.content.2.desc'),
+        },
+        {
+          title: t('routes.features.content.3.title'),
+          href: "/features/3",
+          description: t('routes.features.content.3.desc'),
+        },
+      ],
+    },
+    {
+      title: t('routes.resources.title'),
+      content: [
+        {
+          title: t('routes.resources.content.1.title'),
+          href: "/docs",
+          description: t('routes.resources.content.1.desc'),
+        },
+        {
+          title: t('routes.resources.content.2.title'),
+          href: "/blog",
+          description: t('routes.resources.content.2.desc'),
+        },
+        {
+          title: t('routes.resources.content.3.title'),
+          href: "/help",
+          description: t('routes.resources.content.3.desc'),
+        },
+      ],
+    },
+    {
+      title: t('routes.contact'),
+      href: "/contact",
+    },
+  ];
+
+  interface Language {
+    code: string;
+    name: string;
+    flag?: string;
+  }
+
+  const languages: Language[] = [
+    { code: "en", name: "English", flag: "🇺🇸" },
+    { code: "es", name: "Español", flag: "🇪🇸" },
+    { code: "ar", name: "العربية", flag: "ar" },
+  ];
+
+  const locale = useLocale();
+  const pathname = usePathname();
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState<Language>(languages[0]);
   
@@ -97,18 +103,25 @@ export function Navbar(): React.ReactElement {
   };
   
   const changeLanguage = (language: Language) => {
-    setCurrentLanguage(language);
-    // Here you would typically call your i18n library's function to change the locale
-    // For example: i18n.changeLanguage(language.code);
+    if (language.code === locale) return;
+
+    window.location.href  = `/${language.code}${pathname === '/' ? '' : pathname} `;
   };
+
+  useEffect(() => {
+    const matchedLanguage = languages.find(lang => lang.code === locale) || languages[0];
+    setCurrentLanguage(matchedLanguage);
+  }, [locale]);
+
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-gray-200 dark:border-gray-800 bg-white text-black dark:bg-[#000000] dark:text-white">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Left section: Logo and mobile menu toggle */}
         <div className="flex items-center gap-4">
-          <Link href="/" className="flex items-center space-x-2">
-            <span className="font-bold">YourLogo</span>
+          <Link href="/" draggable={false} className="flex items-center space-x-2">
+            {/* <span className="font-bold">Logo</span> */}
+            <Image src="/logoPlaceholder.png" alt="Logo" draggable={false} height={45} width={45} />
           </Link>
           
           {/* Mobile menu toggle button */}
@@ -155,7 +168,7 @@ export function Navbar(): React.ReactElement {
 
                 return (
                   <NavigationMenuItem key={index}>
-                    <Link href={route.href} legacyBehavior passHref>
+                    <Link href={route.href || defaultRoute.href} legacyBehavior passHref>
                       <NavigationMenuLink className="text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors px-3 py-2 rounded-md font-medium text-center">
                         {route.title}
                       </NavigationMenuLink>
@@ -175,11 +188,11 @@ export function Navbar(): React.ReactElement {
               <button className="flex items-center gap-1 px-2 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                 <Globe className="h-4 w-4" />
                 <span className="hidden sm:inline-block">{currentLanguage.flag}</span>
-                <span className="sr-only">Switch language</span>
+                <span className="sr-only">{t('labelSwitchLang')}</span>
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="bg-white dark:bg-gray-950 text-black dark:text-white">
-              <DropdownMenuLabel>Select Language</DropdownMenuLabel>
+              <DropdownMenuLabel>{t('labelSelectLang')}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               {languages.map((language) => (
                 <DropdownMenuItem 
@@ -204,18 +217,18 @@ export function Navbar(): React.ReactElement {
               <Avatar className="cursor-pointer">
                 <AvatarImage src="" alt="User" />
                 <AvatarFallback className="bg-gray-200 dark:bg-gray-700 text-black dark:text-white">
-                  US
+                  N/A
                 </AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="bg-white dark:bg-gray-950 text-black dark:text-white">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuLabel>{t('dropdown.title')}</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="cursor-pointer">Profile</DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer">Settings</DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer">Dashboard</DropdownMenuItem>
+              <DropdownMenuItem className="cursor-pointer">{t('dropdown.item1')}</DropdownMenuItem>
+              <DropdownMenuItem className="cursor-pointer">{t('dropdown.item2')}</DropdownMenuItem>
+              <DropdownMenuItem className="cursor-pointer">{t('dropdown.item3')}</DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="cursor-pointer">Logout</DropdownMenuItem>
+              <DropdownMenuItem className="cursor-pointer">{t('dropdown.logout')}</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -232,7 +245,7 @@ export function Navbar(): React.ReactElement {
         <nav className="px-4 py-4 space-y-1">
           {/* Language Selector - Mobile View */}
           <div className="py-2">
-            <p className="px-3 text-sm font-medium text-gray-500 dark:text-gray-400">Language</p>
+            <p className="px-3 text-sm font-medium text-gray-500 dark:text-gray-400">{t('labelLang')}</p>
             <div className="mt-1 grid grid-cols-2 gap-1">
               {languages.map((language) => (
                 <button
@@ -286,7 +299,7 @@ export function Navbar(): React.ReactElement {
             return (
               <Link 
                 key={index} 
-                href={route.href}
+                href={route.href || defaultRoute.href}
                 className="block py-2 px-3 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >

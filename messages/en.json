@@ -1,0 +1,57 @@
+{
+  "HomePage": {
+    "title": "Hello world!",
+    "about": "Go to the about page"
+  },
+  "NavBar": {
+    "labelSwitchLang": "Switch Language",
+    "labelSelectLang": "Select Language",
+    "dropdown": {
+      "title": "My Account",
+      "item1": "Profile",
+      "item2": "Settings",
+      "item3": "Dashboard",
+      "logout": "Logout"
+    },
+    "labelLang": "Language",
+    "routes": {
+      "home": "Home",
+      "about": "About",
+      "contact": "Contact",
+      "features": {
+        "title": "Features",
+        "content": {
+          "1": {
+            "title": "Feature 1",
+            "desc": "Description for feature 1"
+          },
+          "2": {
+            "title": "Feature 2",
+            "desc": "Description for feature 2"
+          },
+          "3": {
+            "title": "Feature 3",
+            "desc": "Description for feature 3"
+          }
+        }
+      },
+      "resources": {
+        "title": "Resources",
+        "content": {
+          "1": {
+            "title": "Documentation",
+            "desc": "Technical documentation and guides"
+          },
+          "2": {
+            "title": "Blog",
+            "desc": "Latest news and articles"
+          },
+          "3": {
+            "title": "Help Center",
+            "desc": "Support resources and FAQs"
+          }
+        }
+      }
+    }
+  }
+}
