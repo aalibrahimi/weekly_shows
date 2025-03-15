@@ -94,11 +94,12 @@ export function Footer(): React.ReactElement {
             <Link href="https://codewithali.com/" draggable={false} target="_blank">
               <Image
                 src="/codewithali.png"
-                className="h-12 w-auto mix-blend-screen isolate"
+                className="w-auto mix-blend-screen isolate"
                 alt="CodeWithAli Logo"
                 draggable={false}
-                width={100}
-                height={20}
+                width={30}
+                height={30}
+                quality={100}
               />
             </Link>
 
