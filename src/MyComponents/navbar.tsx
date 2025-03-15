@@ -115,7 +115,7 @@ export function Navbar(): React.ReactElement {
 
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-gray-200 dark:border-gray-800 bg-white text-black dark:bg-[#000000] dark:text-white">
+    <header className="sticky top-0 z-40 w-full border-b border-gray-200 dark:border-gray-800 bg-amber-100 text-black dark:bg-[#000000] dark:text-white">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Left section: Logo and mobile menu toggle */}
         <div className="flex items-center gap-4">
@@ -125,7 +125,7 @@ export function Navbar(): React.ReactElement {
           
           {/* Mobile menu toggle button */}
           <button 
-            className="md:hidden p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            className="md:hidden p-2 rounded-md hover:bg-amber-600 dark:hover:bg-gray-800 transition-colors"
             onClick={toggleMobileMenu}
             aria-label="Toggle mobile menu"
           >
@@ -145,10 +145,10 @@ export function Navbar(): React.ReactElement {
                 if (route.content) {
                   return (
                     <NavigationMenuItem key={index}>
-                      <NavigationMenuTrigger className="bg-white text-black dark:bg-[#000000] dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 ease-in-out">
+                      <NavigationMenuTrigger className="bg-amber-100 text-black dark:bg-[#000000] dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 ease-in-out">
                         {route.title}
                       </NavigationMenuTrigger>
-                      <NavigationMenuContent className="bg-white text-black dark:bg-[#000000] dark:text-white transition-transform duration-300">
+                      <NavigationMenuContent className="bg-amber-50 text-black dark:bg-[#000000] dark:text-white transition-transform duration-300">
                         <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] text-center">
                           {route.content.map((item, i) => (
                             <ListItem
@@ -252,7 +252,7 @@ export function Navbar(): React.ReactElement {
                   className={cn(
                     "flex items-center gap-2 py-2 px-3 text-sm rounded-md transition-colors",
                     currentLanguage.code === language.code 
-                      ? "bg-gray-100 dark:bg-gray-800 font-medium" 
+                      ? "bg-gray-100 dark:bg-gray-800 font-medium"
                       : "hover:bg-gray-50 dark:hover:bg-gray-900"
                   )}
                   onClick={() => {

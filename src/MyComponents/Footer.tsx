@@ -45,7 +45,7 @@ export function Footer(): React.ReactElement {
   ];
 
   return (
-    <footer className="border-t border-gray-200 dark:border-gray-800 bg-white text-black dark:bg-[#000000] dark:text-white mt-auto">
+    <footer className="border-t border-gray-200 dark:border-gray-800 bg-amber-100 text-black dark:bg-[#000000] dark:text-white mt-auto">
       <div className="container mx-auto py-10 text-center px-4">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4 text-center">
           <div className="flex flex-col items-center">
