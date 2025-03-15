@@ -1,5 +1,7 @@
 import React from "react";
-import Link from "next/link";
+import Image from "next/image";
+import { Link } from "@/i18n/navigation";
+import GradientText from "./GradientText";
 
 interface FooterLink {
   name: string;
@@ -44,11 +46,15 @@ export function Footer(): React.ReactElement {
       <div className="container mx-auto py-10 text-center px-4">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4 text-center">
           <div className="flex flex-col items-center">
-            <Link href="/" className="flex items-center space-x-2 justify-center">
+            <Link
+              href="/"
+              className="flex items-center space-x-2 justify-center"
+            >
               <span className="text-lg font-bold">YourLogo</span>
             </Link>
             <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
-              Your company description goes here. A brief overview of what your organization does and its mission.
+              Your company description goes here. A brief overview of what your
+              organization does and its mission.
             </p>
           </div>
 
@@ -77,11 +83,40 @@ export function Footer(): React.ReactElement {
               © {new Date().getFullYear()} Your Company. All rights reserved.
             </p>
             <div className="flex items-center space-x-4">
-              <Link href="https://github.com/CodeWithAli-Co" target="_blank" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white">
+              <Link
+                href="https://github.com/CodeWithAli-Co"
+                target="_blank"
+                className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white"
+              >
                 GitHub
               </Link>
-             
             </div>
+          </div>
+          <div className="mt-4 flex flex-row items-center justify-center gap-2 block  justify-center">
+            {/* CodeWithAli Branding - Same Line */}
+            {/* <div className="mt-10 flex flex-col items-center justify-center"> */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <Link href="https://codewithali.com/" target="_blank">
+              <Image
+                src="/codewithali.png"
+                className="h-12 w-auto mix-blend-screen isolate"
+                alt="CodeWithAli Logo"
+                draggable={false}
+                width={120}
+                height={40}
+              />
+            </Link>
+
+            <p className="text-slate-400 text-md">
+              <Link
+                href="https://codewithali.com/"
+                draggable={false}
+                target="_blank"
+                className="font-semiboldm text-gray-600 text-sm"
+              >
+                Designed By <GradientText>CodeWithAli</GradientText>
+              </Link>
+            </p>
           </div>
         </div>
       </div>
