@@ -286,7 +286,7 @@ export function Navbar(): React.ReactElement {
             return (
               <Link 
                 key={index} 
-                href={route.href} 
+                href={route.href}
                 className="block py-2 px-3 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
