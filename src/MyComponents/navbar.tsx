@@ -120,7 +120,6 @@ export function Navbar(): React.ReactElement {
         {/* Left section: Logo and mobile menu toggle */}
         <div className="flex items-center gap-4">
           <Link href="/" draggable={false} className="flex items-center space-x-2">
-            {/* <span className="font-bold">Logo</span> */}
             <Image src="/logoPlaceholder.png" alt="Logo" draggable={false} height={45} width={45} />
           </Link>
           

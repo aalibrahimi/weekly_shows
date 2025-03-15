@@ -53,5 +53,37 @@
         }
       }
     }
+  },
+  "Footer": {
+    "compDesc": "Your company description goes here. A brief overview of what your organization does and its mission.",
+    "rights": "Your Company. All rights reserved.",
+    "customLink": "Github",
+    "cwaMark": "Designed By",
+    "nav": {
+      "company": {
+        "title": "Company",
+        "links": {
+          "1": "About",
+          "2": "Careers",
+          "3": "Contact"
+        }
+      },
+      "resources": {
+        "title": "Resources",
+        "links": {
+          "1": "Blog",
+          "2": "Documentation",
+          "3": "Help Center"
+        }
+      },
+      "legal": {
+        "title": "Legal",
+        "links": {
+          "1": "Privacy Policy",
+          "2": "Terms of Service",
+          "3": "Cookie Policy"
+        }
+      }
+    }
   }
 }

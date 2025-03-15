@@ -1,0 +1,89 @@
+{
+  "HomePage": {
+    "title": "¡Hola mundo!",
+    "about": "Ir a la página de información"
+  },
+  "NavBar": {
+    "labelSwitchLang": "Cambiar Idioma",
+    "labelSelectLang": "Seleccionar Idioma",
+    "dropdown": {
+      "title": "Mi Cuenta",
+      "item1": "Perfil",
+      "item2": "Configuración",
+      "item3": "Panel de Control",
+      "logout": "Cerrar Sesión"
+    },
+    "labelLang": "Idioma",
+    "routes": {
+      "home": "Inicio",
+      "about": "Acerca de",
+      "contact": "Contacto",
+      "features": {
+        "title": "Características",
+        "content": {
+          "1": {
+            "title": "Característica 1",
+            "desc": "Descripción para característica 1"
+          },
+          "2": {
+            "title": "Característica 2",
+            "desc": "Descripción para característica 2"
+          },
+          "3": {
+            "title": "Característica 3",
+            "desc": "Descripción para característica 3"
+          }
+        }
+      },
+      "resources": {
+        "title": "Recursos",
+        "content": {
+          "1": {
+            "title": "Documentación",
+            "desc": "Documentación técnica y guías"
+          },
+          "2": {
+            "title": "Blog",
+            "desc": "Últimas noticias y artículos"
+          },
+          "3": {
+            "title": "Centro de Ayuda",
+            "desc": "Recursos de soporte y preguntas frecuentes"
+          }
+        }
+      }
+    }
+  },
+  "Footer": {
+    "compDesc": "La descripción de su empresa va aquí. Una breve descripción de lo que hace su organización y su misión.",
+    "rights": "Su Empresa. Todos los derechos reservados.",
+    "customLink": "Github",
+    "cwaMark": "Diseñado Por",
+    "nav": {
+      "company": {
+        "title": "Empresa",
+        "links": {
+          "1": "Acerca de",
+          "2": "Carreras",
+          "3": "Contacto"
+        }
+      },
+      "resources": {
+        "title": "Recursos",
+        "links": {
+          "1": "Blog",
+          "2": "Documentación",
+          "3": "Centro de Ayuda"
+        }
+      },
+      "legal": {
+        "title": "Legal",
+        "links": {
+          "1": "Política de Privacidad",
+          "2": "Términos de Servicio",
+          "3": "Política de Cookies"
+        }
+      }
+    }
+  }
+}
