@@ -1,9 +1,13 @@
 "use client"
+import { HoverBorderGradient } from '@/components/Aceternity/hover-border-gradient';
 import { LampDemo } from '@/components/Aceternity/lamp';
 import { Spotlight } from '@/components/Aceternity/Spotlight';
 import { Timeline } from '@/components/Aceternity/timeline';
 import { TextAnimate } from '@/components/magicui/text-animate';
 import { Button } from '@/components/ui/button';
+import { Pagination } from '@/components/ui/pagination';
+import { Slider } from '@/components/ui/slider';
+import { TimelineDemo } from '@/MyComponents/TimelineDemo';
 import { ArrowRight, ArrowDown } from 'lucide-react';
 import { motion } from 'motion/react';
 import {useTranslations} from 'next-intl';
@@ -61,33 +65,10 @@ export default function Home() {
    {/* Still need to learn how to use this better */}
 < LampDemo />
 
-{/* TimeLine fooling around */}
-<Timeline  data={[
-  
-  {
-    title: "2023",
-    content: <div className="prose dark:prose-invert ">
-      <p>Launched our first NFC Ring prototype</p>
-      <p>Secured initial funding</p>
-    </div>
-  },
-  {
-    title: "2024",
-    content: <div className="prose dark:prose-invert">
-      <p>Released commercial version</p>
-      <p>Expanded to NFC cards</p>
-    </div>
-  },
-  {
-    title: "2025",
-    content: <div className="prose dark:prose-invert">
-      <p>Opened our online store</p>
-      <p>Introduced custom designs</p>
-    </div>
-  }
-]} />
-      {/* Products Section */}
-      <section className="bg-gradient-to-b from-black to-gray-900 py-24 text-white">
+<TimelineDemo />
+
+    {/* Products Section */}
+    <section className="bg-gradient-to-b from-black to-gray-900 py-24 text-white">
         <div className="container px-4">
           <motion.div
             initial={{ opacity: 0 }}
@@ -110,6 +91,7 @@ export default function Home() {
               viewport={{ once: true }}
               className="group relative overflow-hidden rounded-2xl"
             >
+              
               <div className="aspect-square overflow-hidden rounded-2xl bg-gray-800">
                 <motion.img
                   src="/codewithali.png"
@@ -173,6 +155,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+
+    
+      <Slider/>
       </div>
 
   
