@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
+import { TextAnimate } from "../magicui/text-animate";
 
 export function LampDemo() {
   return (
@@ -14,9 +15,9 @@ export function LampDemo() {
           duration: 0.8,
           ease: "easeInOut",
         }}
-        className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
+        className=" bg-gradient-to-br from-slate-300 to-slate-500 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
       >
-        Build lamps <br /> the right way
+        <TextAnimate children={'  Share Your Digital Identity With A Touch'} />
       </motion.h1>
     </LampContainer>
   );
