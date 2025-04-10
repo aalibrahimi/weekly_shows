@@ -74,7 +74,13 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                   }`}
                 />
               </div>
-              <h3 className="hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-neutral-500 dark:text-neutral-500">
+              {/* color of the year going to make it highlight with every year passing */}
+              <h3 className={`hidden md:block text-xl md:text-5xl md:pl-20  font-bold transition-colors duration-300 ${
+                // change color styliing for each year
+                index === activeIndex
+                ? "text-red-900 dark:text-red-900"
+                : "text-neutral-900 dark:text-neutral-900"
+              } `}>
                 {item.title}
               </h3>
             </div>

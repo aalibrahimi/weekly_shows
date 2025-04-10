@@ -63,21 +63,7 @@ export function TimelineDemo() {
           </div>
         ),
       },
-      {
-        title: "2027",
-        content: (
-          <div className="space-y-4">
-            <p className="text-neutral-800 dark:text-neutral-200">
-              Launched our first NFC Ring prototype
-            </p>
-            <p className="text-neutral-800 dark:text-neutral-200">
-              Need to change this later but the idea is there
-            </p>
-            {/* Add images or other rich content */}
-            <div className="h-40"></div> {/* Extra space to extend section */}
-          </div>
-        ),
-      },
+
     // Add more entries with rich content
   ];
   
