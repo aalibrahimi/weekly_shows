@@ -116,7 +116,7 @@ export function Navbar(): React.ReactElement {
 
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-gray-200 dark:border-gray-800 bg-amber-100 text-black dark:bg-[#000000] dark:text-white">
+    <header className="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-gray-800 bg-amber-100 text-black dark:bg-[#000000] dark:text-white">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Left section: Logo and mobile menu toggle */}
         <div className="flex items-center gap-4">
