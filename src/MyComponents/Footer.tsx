@@ -94,7 +94,7 @@ export function Footer(): React.ReactElement {
             <Link href="https://codewithali.com/" draggable={false} target="_blank">
               <Image
                 src="/codewithali.png"
-                className="w-auto mix-blend-screen isolate"
+                className="w-auto isolate"
                 alt="CodeWithAli Logo"
                 draggable={false}
                 width={30}

@@ -7,6 +7,12 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { getLangDir } from "rtl-detect";
 
+// This will show up when you paste the website link as preview
+export const metadata = {
+  title: "Website Template",
+  description: "CodeWithAli's Website Template",
+};
+
 export default async function LocaleLayout({
   children,
   params,
@@ -34,7 +40,7 @@ export default async function LocaleLayout({
           >
             <div className="flex min-h-screen flex-col">
               <Navbar />
-              <main className="flex-1 w-full">{children}</main>
+              <main className="flex-1 w-full bg-black/10">{children}</main>
               <Footer />
             </div>
           </ThemeProvider>

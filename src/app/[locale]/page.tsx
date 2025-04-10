@@ -1,4 +1,5 @@
 "use client"
+
 import { HoverBorderGradient } from '@/components/Aceternity/hover-border-gradient';
 import { LampDemo } from '@/components/Aceternity/lamp';
 import { Spotlight } from '@/components/Aceternity/Spotlight';
@@ -11,6 +12,8 @@ import { TimelineDemo } from '@/MyComponents/TimelineDemo';
 import { ArrowRight, ArrowDown } from 'lucide-react';
 import { motion } from 'motion/react';
 import {useTranslations} from 'next-intl';
+
+
 
 export default function Home() {
   const t = useTranslations('HomePage');

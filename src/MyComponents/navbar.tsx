@@ -86,10 +86,11 @@ export function Navbar(): React.ReactElement {
     flag?: string;
   }
 
+  // Country Flags: https://emojiterra.com/country-flags/
   const languages: Language[] = [
     { code: "en", name: "English", flag: "🇺🇸" },
     { code: "es", name: "Español", flag: "🇪🇸" },
-    { code: "ar", name: "العربية", flag: "ar" },
+    { code: "ar", name: "العربية", flag: "🇮🇶" },
   ];
 
   const locale = useLocale();
