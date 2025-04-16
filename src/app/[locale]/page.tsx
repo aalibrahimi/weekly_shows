@@ -1,6 +1,9 @@
 "use client";
 // import { Elements } from "@stripe/react-stripe-js";
 import { useTranslations } from "next-intl";
+import { Elements } from "@stripe/react-stripe-js";
+import {loadStripe } from "@stripe/stripe-js";
+
 
 if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {
   throw new Error("NEXT_PUBLIC_STRIPE_PUBLIC_KEY is not defined")
@@ -13,7 +16,8 @@ type homeProps = {
 }
 
 
-// const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 export default function Home({ searchParams } : any) {
   
@@ -42,6 +46,17 @@ export default function Home({ searchParams } : any) {
         </button>
       </section>
     </form>
+
+    <Elements
+    stripe={stripePromise}
+    Options={{
+      mode: "payment"
+      amount: convertToSubcurrency(amount)
+      currency: "usd",
+    }}
+    > 
+    <CheckoutPage amount={amount} />
+    </Elements>
 
     </main>
   );
