@@ -112,7 +112,7 @@ export default function CheckoutPage({ amount }: CheckoutPageProps) {
       </form> */}
       {clientSecret  && <PaymentElement />}
       {errorMessage && <div>{errorMessage}</div> }
-      <Button>Pay</Button>
+      {/* <Button>Pay</Button> */}
   
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
