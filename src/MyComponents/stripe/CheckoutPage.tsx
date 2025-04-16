@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 
 type CheckoutPageProps = {
   amount: number;
+  
 }
 
 export default function CheckoutPage({ amount }: CheckoutPageProps) {
@@ -33,21 +34,31 @@ export default function CheckoutPage({ amount }: CheckoutPageProps) {
   
 
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   
     if (!stripe || !elements || !clientSecret) {
       return;
     }
-  
+    // check for validation error, if theres any errors in the info that the client provided us with in the 
+    // client payment form
+    const { error: submitError } = await elements.submit()
     setIsLoading(true);
-  
-    const { error } = await stripe.confirmPayment({
+
+    if (submitError)  {
+      setErrorMessage(submitError.message);
+      setIsLoading(false);
+      return;
+    }
+    // confirm payment, then we can actually charge the user for the transactions
+    const { error } = await stripe.confirmPayment ({
       elements,
-      confirmParams: {
+      clientSecret,
+      confirmParams : {
         return_url: `${window.location.origin}/success`,
-      },
-    });
+      }
+    })
+
   
     if (error) {
       setErrorMessage(error.message || "Payment failed");
@@ -95,12 +106,13 @@ export default function CheckoutPage({ amount }: CheckoutPageProps) {
 
   return (
     <div className="mt-8 p-6 bg-white rounded shadow-md text-black max-w-md mx-auto">
-     <form onSubmit={handleSubmit}>
+     {/* <form onSubmit={handleSubmit}>
       <h3 className="text-xl font-bold mb-4">lolzy</h3>
 
-      {clientSecret  && <PaymentElement />  }
+      </form> */}
+      {clientSecret  && <PaymentElement />}
+      {errorMessage && <div>{errorMessage}</div> }
       <Button>Pay</Button>
-      </form>
   
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -133,10 +145,11 @@ export default function CheckoutPage({ amount }: CheckoutPageProps) {
         
         <button 
           type="submit" 
+          // disabling button if the stripe has not loaded yet (as of nowww the button loads instantly)
           disabled={!stripe || isLoading}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50"
         >
-          {isLoading ? "Processing..." : `Pay $${amount}`}
+          {!isLoading ? "Processing..." : `Pay $${amount}`}
         </button>
       </form> 
      </div> 
