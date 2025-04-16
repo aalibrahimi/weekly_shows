@@ -32,7 +32,7 @@ export default function Home() {
   // obv variablize it later
   const amount = 59.99 
   return (
-    <main className="max-w-6xl mx-auto p-10 text-white text-center border m-10 roundedd-md bg-gradient-to-tr from-red-950/30 to bg-red-900">
+    <main className="max-w-6xl mx-auto p-10 text-white text-center m-10 roundedd-md ">
       <h2 className="text-4xl font-bold text-black">Website Dev</h2>
       <h3 className="text-2xl">Requested 
         <span className="font-bold"> ${amount} </span>
