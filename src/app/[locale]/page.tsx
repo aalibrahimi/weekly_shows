@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { Elements } from "@stripe/react-stripe-js";
 import {loadStripe } from "@stripe/stripe-js";
 import { Button } from "@/components/ui/button";
-import CheckoutPage from "@/MyComponents/CheckoutPage";
+import CheckoutPage from "@/MyComponents/stripe/CheckoutPage";
 
 
 if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {

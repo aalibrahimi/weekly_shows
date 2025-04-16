@@ -44,6 +44,7 @@ export default function CheckoutPage({ amount }: CheckoutPageProps) {
     }
 
     // Here you would typically call your backend API to create a payment and im not aat that j yet
+    // super important becuaase payments are not happening yet  andd we need this to process actuall payments
     // For example:
     // const response = await fetch('/api/create-payment', {
     //   method: 'POST',
