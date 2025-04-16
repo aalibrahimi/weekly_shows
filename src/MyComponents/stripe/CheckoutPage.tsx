@@ -46,7 +46,7 @@ export default function CheckoutPage({ amount }: CheckoutPageProps) {
     setIsLoading(true);
 
     if (submitError)  {
-      setErrorMessage(submitError.message);
+      setErrorMessage(submitError.message ?? "Submission Error");
       setIsLoading(false);
       return;
     }
@@ -149,7 +149,7 @@ export default function CheckoutPage({ amount }: CheckoutPageProps) {
           disabled={!stripe || isLoading}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50"
         >
-          {!isLoading ? "Processing..." : `Pay $${amount}`}
+          {isLoading ? "Processing..." : `Pay $${amount}`}
         </button>
       </form> 
      </div> 
