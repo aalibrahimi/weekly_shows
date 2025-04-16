@@ -6,12 +6,18 @@ if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {
   throw new Error("NEXT_PUBLIC_STRIPE_PUBLIC_KEY is not defined")
 }
 
+type homeProps = {
+  searchParam: {
+    canceled?: string;
+  }
+}
 
 
 // const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
-const canceled = await searchParams
 export default function Home({ searchParams } : any) {
+  
+  const canceled = searchParams?.canceled === 'true';
   const t = useTranslations("HomePage");
 
   if ( canceled  ) {
