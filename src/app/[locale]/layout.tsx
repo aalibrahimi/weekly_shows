@@ -24,7 +24,7 @@ export default async function LocaleLayout({
   return (
     // Override HTML attributes from the parent layout
     <html lang={locale} dir={direction} suppressHydrationWarning>
-      <body className="min-h-screen flex flex-col">
+      <body >
         <NextIntlClientProvider>
           <ThemeProvider
             attribute="class"

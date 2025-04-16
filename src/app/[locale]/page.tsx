@@ -6,29 +6,22 @@ import {loadStripe } from "@stripe/stripe-js";
 import { Button } from "@/components/ui/button";
 import CheckoutPage from "@/MyComponents/stripe/CheckoutPage";
 import convertToSubcurrency from "@/lib/convertToSubcurrency";
+import { useSearchParams } from "next/navigation";
 
 if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {
   throw new Error("NEXT_PUBLIC_STRIPE_PUBLIC_KEY is not defined")
-}
-
-type HomeProps = {
-  searchParams: {
-    canceled?: string;
-  }
 }
 
 
 // starting up stripey
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
-// need to convert money to cents
 
 
-
-export default function Home({ searchParams } : HomeProps) {
-  
+export default function Home() {
+  const searchParams = useSearchParams();
   // checking if the canceled paramater exist in url just in case a user cancels, (we need to have a cancellation page)
-  const canceled = searchParams?.canceled === 'true';
+  const canceled = searchParams.get('canceled') === 'true';
   const t = useTranslations("HomePage");
 
   if ( canceled  ) {

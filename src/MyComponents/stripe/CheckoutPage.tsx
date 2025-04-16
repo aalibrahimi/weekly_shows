@@ -1,6 +1,8 @@
 "use client";
-import { useState } from "react";
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { useEffect, useState } from "react";
+import { CardElement, useStripe, useElements, PaymentElement } from "@stripe/react-stripe-js";
+import convertToSubcurrency from "@/lib/convertToSubcurrency";
+import { Button } from "@/components/ui/button";
 
 type CheckoutPageProps = {
   amount: number;
@@ -12,6 +14,24 @@ export default function CheckoutPage({ amount }: CheckoutPageProps) {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [clientSecret, setClientSecret] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  // need to generate new key for everytime the client switches betwween payment options, one key for apple, second key for google pay, third : etc.
+  // this allows us to  process the payment
+  useEffect(() => {
+
+    fetch("/api/create-payment-intent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ amount: convertToSubcurrency(amount)}),
+    })
+    // pass the information aand get the clients data
+    .then((res) => res.json())
+    .then((data) => setClientSecret(data.clientSecret));
+  }, [amount]);
+  
+
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -62,9 +82,15 @@ export default function CheckoutPage({ amount }: CheckoutPageProps) {
   };
 
   return (
-    <div className="mt-8 p-6 bg-white rounded shadow-md text-black max-w-md mx-auto">
-      <h3 className="text-xl font-bold mb-4">Custom Payment Form</h3>
-      <form onSubmit={handleSubmit}>
+    // <div className="mt-8 p-6 bg-white rounded shadow-md text-black max-w-md mx-auto">
+    <form>
+      <h3 className="text-xl font-bold mb-4">lolzy</h3>
+
+      {clientSecret  && <PaymentElement />  }
+      <Button>Pay</Button>
+      </form>
+  );
+      {/* <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Card Details
@@ -100,7 +126,7 @@ export default function CheckoutPage({ amount }: CheckoutPageProps) {
         >
           {isLoading ? "Processing..." : `Pay $${amount}`}
         </button>
-      </form>
-    </div>
-  );
+      </form> */}
+    {/* </div> */}
+  
 }
