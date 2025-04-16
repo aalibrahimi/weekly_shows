@@ -55,7 +55,7 @@ export default function CheckoutPage({ amount }: CheckoutPageProps) {
       elements,
       clientSecret,
       confirmParams : {
-        return_url: `${window.location.origin}/success`,
+        return_url: `${window.location.origin}/success?session_id=test`,
       }
     })
 
