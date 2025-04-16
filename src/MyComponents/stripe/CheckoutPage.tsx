@@ -83,7 +83,7 @@ export default function CheckoutPage({ amount }: CheckoutPageProps) {
 
   return (
     // <div className="mt-8 p-6 bg-white rounded shadow-md text-black max-w-md mx-auto">
-    <form>
+    <form onSubmit={handleSubmit}>
       <h3 className="text-xl font-bold mb-4">lolzy</h3>
 
       {clientSecret  && <PaymentElement />  }
