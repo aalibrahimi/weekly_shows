@@ -35,13 +35,25 @@ export default function CheckoutPage({ amount }: CheckoutPageProps) {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-
-    if (!stripe || !elements) {
-      // Stripe.js hasn't loaded yet
+  
+    if (!stripe || !elements || !clientSecret) {
       return;
     }
-
+  
     setIsLoading(true);
+  
+    const { error } = await stripe.confirmPayment({
+      elements,
+      confirmParams: {
+        return_url: `${window.location.origin}/success`,
+      },
+    });
+  
+    if (error) {
+      setErrorMessage(error.message || "Payment failed");
+    }
+    
+    setIsLoading(false);
 
     // Get a reference to a CardElement
     const cardElement = elements.getElement(CardElement);
@@ -53,10 +65,10 @@ export default function CheckoutPage({ amount }: CheckoutPageProps) {
     }
 
     // Create payment method
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: 'card',
-      card: cardElement,
-    });
+    // const { error, paymentMethod } = await stripe.createPaymentMethod({
+    //   type: 'card',
+    //   card: cardElement,
+    // });
 
     if (error) {
       setErrorMessage(error.message ?? "An unknown error occurred");
@@ -77,7 +89,7 @@ export default function CheckoutPage({ amount }: CheckoutPageProps) {
     // });
     
     // For now, just show success message
-    alert(`Payment method created successfully: ${paymentMethod.id}`);
+    // alert(`Payment method created successfully: ${paymentMethod.id}`);
     setIsLoading(false);
   };
 
