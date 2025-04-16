@@ -10,6 +10,7 @@ export default function CheckoutPage({ amount }: CheckoutPageProps) {
   const stripe = useStripe();
   const elements = useElements();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [clientSecret, setClientSecret] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent) => {

@@ -5,7 +5,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import {loadStripe } from "@stripe/stripe-js";
 import { Button } from "@/components/ui/button";
 import CheckoutPage from "@/MyComponents/stripe/CheckoutPage";
-
+import convertToSubcurrency from "@/lib/convertToSubcurrency";
 
 if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {
   throw new Error("NEXT_PUBLIC_STRIPE_PUBLIC_KEY is not defined")
@@ -22,7 +22,7 @@ type HomeProps = {
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 // need to convert money to cents
-const convertToSubcurrency = (amount: number) => Math.round(amount * 100);
+
 
 
 export default function Home({ searchParams } : HomeProps) {
@@ -62,7 +62,7 @@ export default function Home({ searchParams } : HomeProps) {
     stripe={stripePromise}
     options={{
       mode: "payment",
-      amount: convertToSubcurrency(amount),
+      amount: convertToSubcurrency(amount), // cents
       currency: "usd",
     }}
     > 
