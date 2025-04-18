@@ -9,7 +9,15 @@ interface Items {
 const storeItems: Items[] = [
   {
     name: "Item 1",
-    price: 2
+    price: 1.99
+  },
+  {
+    name: "Item 2",
+    price: 1.99
+  },
+  {
+    name: "Item 3",
+    price: 5.99
   }
 ]
 

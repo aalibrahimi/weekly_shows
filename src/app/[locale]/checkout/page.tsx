@@ -17,27 +17,39 @@ if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 export default function Home() {
-  const { itemprice } = useCheckoutStore();
+  const { itemprice, itemname } = useCheckoutStore();
   const searchParams = useSearchParams();
   // checking if the canceled paramater exist in url just in case a user cancels, (we need to have a cancellation page)
   const canceled = searchParams.get("canceled") === "true";
-  const itemPrice = searchParams.get("price") === String(itemprice);
+  // const itemPrice = searchParams.get("price") === String(itemprice);
+  // const paramItemName = itemname.replace(' ', '%20')
+  // const itemName = searchParams.get("name") === paramItemName;
+  // This is us gettign values for params
+  const priceParam = searchParams.get('price')
+  const nameParam = searchParams.get('name')
+
+  const isPriceValid = priceParam === String(itemprice);
+  const isNameValid = nameParam === itemname;
+
   const t = useTranslations("HomePage");
 
   if (canceled) {
     console.log("Order canceled -- continue to go to the cancellation page.");
   }
 
-  if (!itemPrice) {
-    console.log("Price does not match item Price");
-    return
+  if (!isPriceValid && !isNameValid) {
+    // console.log("Price does not match item Price or item Name");
+    // console.log({ paramItemName })
+    return (
+      <div className="">Invalid Params</div>
+    )
   }
 
   // obv variablize it later
   // const amount = 59.99;
   return (
     <main className="max-w-6xl mx-auto p-10 text-white text-center m-10 roundedd-md ">
-      <h2 className="text-4xl font-bold text-black">Website Dev</h2>
+      <h2 className="text-4xl font-bold text-black">{itemname}</h2>
       <h3 className="text-2xl">
         Requested
         <span className="font-bold"> ${itemprice} </span>

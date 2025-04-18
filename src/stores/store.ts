@@ -24,8 +24,12 @@ export const useFormDataStore = create<FormDataState>()((set) => ({
 interface Checkout {
   itemprice: number
   setItemprice: (itemprice: number) => void
+  itemname: string
+  setItemname: (itemname: string) => void
 }
 export const useCheckoutStore = create<Checkout>()((set) => ({
   itemprice: 0.00,
-  setItemprice: (itemprice: number) => set({ itemprice })
+  setItemprice: (itemprice: number) => set({ itemprice }),
+  itemname: "",
+  setItemname: (itemname: string) => set({ itemname })
 }))

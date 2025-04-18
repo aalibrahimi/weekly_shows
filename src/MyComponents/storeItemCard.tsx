@@ -19,7 +19,12 @@ function StoreItemCard({
   itemImage,
   to,
 }: ItemCard) {
-  const { setItemprice } = useCheckoutStore();
+  const { setItemprice, setItemname } = useCheckoutStore();
+
+  const handleItemSet = (price: number, name: string) => {
+    setItemprice(price);
+    setItemname(name);
+  }
   return (
     <div className="bg-teal-500 w-75 h-75 p-2 rounded-sm">
       <div
@@ -36,9 +41,9 @@ function StoreItemCard({
       </div>
       <p className="text-2xl font-semibold">{itemName}</p>
       <p className="text-xl font-serif">${itemPrice}</p>
-      <Link href={to ? `${to}` : `/checkout?price=${itemPrice}`}>
+      <Link href={to ? `${to}` : `/checkout?price=${itemPrice}?name=${itemName}`}>
         <Button
-          onClick={() => setItemprice(itemPrice)}
+          onClick={() => handleItemSet(itemPrice, itemName)}
           className="bg-gradient-to-br from-red-400 to-red-500 hover:from-red-400 hover:via-red-500 hover:to-red-600 text-black hover:text-white transition-all duration-300
       hover:inset-shadow-[0px_0px_5px_-1px] inset-shadow-[0px_0px_5px_-1px] hover:inset-shadow-white hover:cursor-pointer"
           size={"lg"}
