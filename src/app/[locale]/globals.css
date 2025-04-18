@@ -148,3 +148,49 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
+
+
+/* css border glow ani */
+
+.box {
+  height: 200px;
+  aspect-ratio: 1/1;
+  position: relative;
+  background-color: transparent; /* Make box background transparent */
+  border: 3px solid transparent; /* Create transparent border */
+  box-sizing: border-box;
+}
+
+@property --deg {
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 0deg;
+}
+
+.box::before {
+  content: "";
+  position: absolute;
+  inset: 0; /* Fill entire box area */
+  background: conic-gradient(
+    from var(--deg) at center,
+    #00000000,
+    #6f0000,
+    #a30000,
+    #fc0808
+  );
+  border-radius: inherit;
+  z-index: -1;
+  animation: autoRotate 2s linear infinite;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  padding: 2px;
+}
+
+@keyframes autoRotate {
+  to {
+    --deg: 360deg;
+  }
+}

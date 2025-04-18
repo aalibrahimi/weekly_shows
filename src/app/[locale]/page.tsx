@@ -26,7 +26,7 @@ export default function Home() {
 
   if ( canceled  ) {
     console.log(
-      'Order canceled -- continue to s hopw around and checkout when ready.'
+      'Order canceled -- continue to go to the cancellation page.'
     )
   }
   // obv variablize it later
