@@ -159,6 +159,7 @@
   background-color: transparent; /* Make box background transparent */
   border: 3px solid transparent; /* Create transparent border */
   box-sizing: border-box;
+  border-radius: 2px;
 }
 
 @property --deg {
