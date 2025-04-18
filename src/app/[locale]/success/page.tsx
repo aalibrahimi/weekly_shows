@@ -1,10 +1,10 @@
-export default function PaymentSuccess({
+export default async function PaymentSuccess({
   searchParams: { amount, session_id },
 } : {
   searchParams : { amount?: string; session_id?: string };
 }) {
   // Generate a confirmation number if not provided
-  const confirmationId = session_id?.substring(0, 8) || `INV-${Math.floor(100000 + Math.random() * 900000)}`;
+  const confirmationId = await session_id?.substring(0, 8) || `INV-${Math.floor(100000 + Math.random() * 900000)}`;
   const orderDate = new Date().toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',

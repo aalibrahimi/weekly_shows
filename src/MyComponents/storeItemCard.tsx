@@ -1,0 +1,29 @@
+import { Button } from '@/components/ui/button'
+import Image from 'next/image'
+import React from 'react'
+
+interface ItemCard {
+  itemName: string
+  itemPrice: number
+  itemImage: string
+}
+
+function StoreItemCard({ itemName, itemPrice, itemImage }: ItemCard) {
+  return (
+    <div className="bg-teal-500 w-75 h-75 p-2 rounded-sm">
+      <div className="w-full h-40 rounded-sm hover:shadow-[0px_5px_5px_-2px] hover:shadow-black hover:-translate-y-0.5 transition-all duration-200
+      hover:brightness-110">
+        <Image src={itemImage} alt={itemName.toLowerCase()} width={500} height={500} className='w-full h-auto object-contain rounded-sm' />
+      </div>
+      <p className="text-2xl font-semibold">{itemName}</p>
+      <p className="text-xl font-serif">${itemPrice}</p>
+      <Button className='bg-gradient-to-br from-red-400 to-red-500 hover:from-red-400 hover:via-red-500 hover:to-red-600 text-black hover:text-white transition-all duration-300
+      hover:inset-shadow-[0px_0px_5px_-1px] inset-shadow-[0px_0px_5px_-1px] hover:inset-shadow-white'
+      size={"lg"}>
+        Buy Now
+      </Button>
+    </div>
+  )
+}
+
+export default StoreItemCard

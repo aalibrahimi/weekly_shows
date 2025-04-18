@@ -78,6 +78,10 @@ export function Navbar(): React.ReactElement {
       title: t('routes.contact'),
       href: "/contact",
     },
+    {
+      title: t('routes.store'),
+      href: "/store",
+    },
   ];
 
   interface Language {
