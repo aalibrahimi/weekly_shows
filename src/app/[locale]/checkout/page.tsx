@@ -21,15 +21,9 @@ export default function Home() {
   const searchParams = useSearchParams();
   // checking if the canceled paramater exist in url just in case a user cancels, (we need to have a cancellation page)
   const canceled = searchParams.get("canceled") === "true";
-  // const itemPrice = searchParams.get("price") === String(itemprice);
-  // const paramItemName = itemname.replace(' ', '%20')
-  // const itemName = searchParams.get("name") === paramItemName;
-  // This is us gettign values for params
-  const priceParam = searchParams.get('price')
-  const nameParam = searchParams.get('name')
-
-  const isPriceValid = priceParam === String(itemprice);
-  const isNameValid = nameParam === itemname;
+  const itemPrice = searchParams.get("price") === String(itemprice);
+  const paramItemName = itemname.replace(' ', '%20')
+  const itemName = searchParams.get("name") === paramItemName;
 
   const t = useTranslations("HomePage");
 
@@ -37,9 +31,7 @@ export default function Home() {
     console.log("Order canceled -- continue to go to the cancellation page.");
   }
 
-  if (!isPriceValid && !isNameValid) {
-    // console.log("Price does not match item Price or item Name");
-    // console.log({ paramItemName })
+  if (!itemPrice && !itemName) {
     return (
       <div className="">Invalid Params</div>
     )

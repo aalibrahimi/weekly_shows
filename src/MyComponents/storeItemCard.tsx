@@ -41,7 +41,7 @@ function StoreItemCard({
       </div>
       <p className="text-2xl font-semibold">{itemName}</p>
       <p className="text-xl font-serif">${itemPrice}</p>
-      <Link href={to ? `${to}` : `/checkout?price=${itemPrice}?name=${itemName}`}>
+      <Link href={to ? `${to}` : `/checkout?price=${itemPrice}&name=${itemName}`}>
         <Button
           onClick={() => handleItemSet(itemPrice, itemName)}
           className="bg-gradient-to-br from-red-400 to-red-500 hover:from-red-400 hover:via-red-500 hover:to-red-600 text-black hover:text-white transition-all duration-300
