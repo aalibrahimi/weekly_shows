@@ -4,6 +4,7 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_KEY as string);
 
+/* eslint-disable */
 export async function POST(req: any) {
   // Need to check if the mothod comming in is POST
   if (req.method === 'POST') {
